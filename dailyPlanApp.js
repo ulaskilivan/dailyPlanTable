@@ -5,15 +5,30 @@ const addButton=document.querySelector("#add");
 const clearButton=document.querySelector("#clear");
 const secondCont=document.querySelector(".second-cont");
 
-
-addButton.addEventListener("click",getInput);
-function getInput(){
+eventListeners();
+function eventListeners(){//All event listeners are here for better reading.
+    addButton.addEventListener("click",getInput);
+    clearButton.addEventListener("click",clearAll);
+    document.addEventListener("DOMContentLoaded",loadAllPlans);
+}
+function loadAllPlans(){//After page loaded, loads the plans that stored in local storage.
+    let times=getPlansFromStorage()[0];
+    let tasks=getPlansFromStorage()[1];
+    for(i=0;i<=times.length;i++){
+        time=times[i].split("-");
+        createLine(time[0],time[1],tasks[i]);
+    }
+}
+function getInput(){//Gets the input from first container area.
     let timeFirst=timeFrom.value;
     let timeLast=timeTo.value;
-    let task=taskInput.value;
-    createLine(timeFirst,timeLast,task);
+    let task=taskInput.value.trim();
+    if(timeFirst!==""&&timeLast!==""&&task!==""){
+        createLine(timeFirst,timeLast,task);
+        savePlansToStorage(timeFirst,timeLast,task);
+    }
 }
-function createLine(firstTime,secondTime,textTask){
+function createLine(firstTime,secondTime,textTask){//Creates the plan line and add it to HTML.
     let planRow=document.createElement("div");
     let timeOutput=document.createElement("div");
     let taskOutput=document.createElement("div");
@@ -40,4 +55,33 @@ function createLine(firstTime,secondTime,textTask){
     planRow.append(buttonNotDone);
     planRow.append(buttonDelete);
     secondCont.append(planRow);
+    clearAll();
+}
+function getPlansFromStorage(){//Takes the plans from storage if exist. If not creates empty.
+    let times;
+    let tasks;
+    if(localStorage.getItem("times")===null&&localStorage.getItem("tasks")===null){
+        times=[];
+        tasks=[];
+    }
+    else{
+        times=JSON.parse(localStorage.getItem("times"));
+        tasks=JSON.parse(localStorage.getItem("tasks"));
+    }
+    let timesTasks=[times,tasks];
+    return timesTasks;
+}
+function savePlansToStorage(firstTime,timeLast,textTask){//Saves the plans to the storage while they added.
+    let timesTasks=getPlansFromStorage();
+    let times=timesTasks[0];
+    let tasks=timesTasks[1];
+    times.push(firstTime+"-"+timeLast);
+    tasks.push(textTask);
+    localStorage.setItem("times",JSON.stringify(times));
+    localStorage.setItem("tasks",JSON.stringify(tasks));
+}
+function clearAll(){//Clears the values while input.
+    timeFrom.value="";
+    timeTo.value="";
+    taskInput.value="";
 }
