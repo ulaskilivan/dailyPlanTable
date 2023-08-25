@@ -9,12 +9,48 @@
     <link rel="stylesheet" href="main.css">
     <link rel="stylesheet" media="(max-width:768px)" href="pad.css">
     <link rel="stylesheet" media="(max-width:500px)" href="mobile.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@1,9..40,100&family=Roboto:wght@400;700&family=Tilt+Prism&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
     integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-    
+    <div class="container">
+        <h1 class="header">#PLANYOURDAY</h1>
+        <div class="input-section">
+            <p class="fromto-writings" style="margin:0 0.5rem 0 0 !important;">From</p>
+            <input type="time" id="time-first-input">
+            <p class="fromto-writings">to</p>
+            <input type="time" id="time-last-input">
+            <div class="task-container"><input type="text" id="task-input" placeholder="Task"></div>
+            <button class="button">Add</button>
+            <button class="button">Clear</button>
+        </div>
+    </div>
+    <div class="container second-cont">
+        <h1 class="header second-head">#PLANS</h1>
+        <div class="plan-header">
+            <div class="time-header">Time</div>
+            <div class="task-header">Task</div>
+        </div>
+        <div class="plan-row">
+            <div class="time-output">12.20-13.00</div>
+            <div class="task-output">Ekmek al ve masaya koy.</div>
+            <button class="button second-but">Done</button>
+            <button class="button second-but">Not Done</button>
+            <button class="button second-but">Delete Task</button>
+        </div>
+        <div class="plan-row">
+            <div class="time-output">12.20-13.00</div>
+            <div class="task-output">Ekmek al ve masaya koy.</div>
+            <button class="button second-but">Done</button>
+            <button class="button second-but">Not Done</button>
+            <button class="button second-but">Delete Task</button>
+        </div>
+        <div class="div"></div>
+    </div>
 
 
 
