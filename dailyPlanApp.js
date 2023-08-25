@@ -4,12 +4,16 @@ const taskInput=document.querySelector("#task-input");
 const addButton=document.querySelector("#add");
 const clearButton=document.querySelector("#clear");
 const secondCont=document.querySelector(".second-cont");
+// const doneButton=document.querySelector("#done");
+// const notDoneButton=document.querySelector("#not-done");
+// const deleteButton=document.querySelector("#delete-but");
 
 eventListeners();
 function eventListeners(){//All event listeners are here for better reading.
     addButton.addEventListener("click",getInput);
     clearButton.addEventListener("click",clearAll);
     document.addEventListener("DOMContentLoaded",loadAllPlans);
+    secondCont.addEventListener("click",planButtons);
 }
 function loadAllPlans(){//After page loaded, loads the plans that stored in local storage.
     let times=getPlansFromStorage()[0];
@@ -40,10 +44,13 @@ function createLine(firstTime,secondTime,textTask){//Creates the plan line and a
     taskOutput.classList.add("task-output");
     buttonDone.classList.add("button");
     buttonDone.classList.add("second-but");
+    buttonDone.classList.add("done");
     buttonNotDone.classList.add("button");
     buttonNotDone.classList.add("second-but");
+    buttonNotDone.classList.add("not-done");
     buttonDelete.classList.add("button");
     buttonDelete.classList.add("second-but");
+    buttonDelete.classList.add("delete-but");
     timeOutput.textContent=firstTime+"-"+secondTime;
     taskOutput.textContent=textTask;
     buttonDone.textContent="Done";
@@ -84,4 +91,12 @@ function clearAll(){//Clears the values while input.
     timeFrom.value="";
     timeTo.value="";
     taskInput.value="";
+}
+function planButtons(event){
+    if(event.target.className==="button second-but done"){
+        event.target.parentElement.style.background="#6ef13a";
+    }
+    else if(event.target.className==="button second-but not-done"){
+        event.target.parentElement.style.background="#e44a4a";
+    }
 }
