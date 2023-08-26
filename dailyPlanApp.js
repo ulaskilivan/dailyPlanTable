@@ -4,9 +4,6 @@ const taskInput=document.querySelector("#task-input");
 const addButton=document.querySelector("#add");
 const clearButton=document.querySelector("#clear");
 const secondCont=document.querySelector(".second-cont");
-// const doneButton=document.querySelector("#done");
-// const notDoneButton=document.querySelector("#not-done");
-// const deleteButton=document.querySelector("#delete-but");
 
 eventListeners();
 function eventListeners(){//All event listeners are here for better reading.
@@ -94,10 +91,10 @@ function clearAll(){//Clears the values while input.
 }
 function planButtons(event){//gives certain color to plan line.
     if(event.target.className==="button second-but done"){
-        event.target.parentElement.style.background="#6ef13a";
+        event.target.parentElement.classList.toggle("done-color");
     }
     else if(event.target.className==="button second-but not-done"){
-        event.target.parentElement.style.background="#e44a4a";
+        event.target.parentElement.classList.toggle("not-done-color");
     }
     else if(event.target.className==="button second-but delete-but"){
         let line=event.target.parentElement;
@@ -107,7 +104,7 @@ function planButtons(event){//gives certain color to plan line.
         deletePlanFromStorage(time,task);
     }
 }
-function deletePlanFromStorage(time,plan){
+function deletePlanFromStorage(time,plan){//Deletes chosen plan line from local storage
     let times=getPlansFromStorage()[0];
     let plans=getPlansFromStorage()[1];
     plans.forEach(function(item,index){

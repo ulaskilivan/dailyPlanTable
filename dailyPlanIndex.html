@@ -20,13 +20,17 @@
     <div class="container">
         <h1 class="header">#PLANYOURDAY</h1>
         <div class="input-section">
-            <p class="fromto-writings" style="margin:0 0.5rem 0 0 !important;">From</p>
-            <input type="time" id="time-first-input">
-            <p class="fromto-writings">to</p>
-            <input type="time" id="time-last-input">
+            <div class="inputs">
+                <p class="fromto-writings" style="margin:0 0.5rem 0 0 !important;">From</p>
+                <input type="time" id="time-first-input">
+                <p class="fromto-writings">to</p>
+                <input type="time" id="time-last-input">
+            </div>
             <div class="task-container"><input type="text" id="task-input" placeholder="Task"></div>
-            <button id="add" class="button">Add</button>
-            <button id="clear" class="button">Clear</button>
+            <div class="first-buttons">
+                <button id="add" class="button addclear">Add</button>
+                <button id="clear" class="button addclear">Clear</button>
+            </div>
         </div>
     </div>
     <div class="container second-cont">
