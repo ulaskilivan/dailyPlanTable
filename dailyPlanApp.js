@@ -92,11 +92,30 @@ function clearAll(){//Clears the values while input.
     timeTo.value="";
     taskInput.value="";
 }
-function planButtons(event){
+function planButtons(event){//gives certain color to plan line.
     if(event.target.className==="button second-but done"){
         event.target.parentElement.style.background="#6ef13a";
     }
     else if(event.target.className==="button second-but not-done"){
         event.target.parentElement.style.background="#e44a4a";
     }
+    else if(event.target.className==="button second-but delete-but"){
+        let line=event.target.parentElement;
+        let time=line.children[0].innerText;
+        let task=line.children[1].innerText;
+        line.remove();
+        deletePlanFromStorage(time,task);
+    }
+}
+function deletePlanFromStorage(time,plan){
+    let times=getPlansFromStorage()[0];
+    let plans=getPlansFromStorage()[1];
+    plans.forEach(function(item,index){
+        if(item===plan&&times[index]===time){
+            plans.splice(index,1);
+            times.splice(index,1);
+        }
+    });
+    localStorage.setItem("tasks",JSON.stringify(plans));
+    localStorage.setItem("times",JSON.stringify(times));
 }
